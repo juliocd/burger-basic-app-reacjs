@@ -13,8 +13,17 @@ const controls = [
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
         {controls.map(ctrl => {
-            return <BuildControl key={ctrl.label} label={ctrl.label} />
+            return <BuildControl 
+                key={ctrl.label} 
+                label={ctrl.label}
+                added={() => props.ingridientAdd(ctrl.type)}
+                removed={() => props.ingridientRemove(ctrl.type)}
+                disabled={props.disabled[ctrl.type]} />
         })}
+        <button 
+        onClick={props.ordered}
+        className={classes.OrderButton}
+        disabled={!props.purchasable}>ORDER NOW</button>
     </div>
 );
 
